@@ -971,11 +971,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     closeModalReturn()
   }
 
-  searchForm.addEventListener('click', searchProducts)
+ alert('привет')
+
+  const formSearchBtn = document.querySelector('.form-search__btn')
+  elementCheck(formSearchBtn, 'кнопка поиска')
+
+  formSearchBtn.addEventListener('click', searchProducts)
 
   function searchProducts(e) {
     e.preventDefault()
-    if (!e.target.closest('.form-search__btn')) return
     const needProduct = searchInput.value
     if (!needProduct) return
 
@@ -1000,13 +1004,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
 
+  searchInput.addEventListener('touchstart', function (e) {
+    this.focus()
+  }, {passive: false})
+
   searchInput.addEventListener('keydown', function(event) {
   if (event.key === 'Enter' || event.keyCode === 13) {
-    document.querySelector('.form-search__btn')?.click()
+    formSearchBtn.click()
   }
 });
 
-  searchInput.addEventListener('change', function (e) {
+   searchInput.addEventListener('input', function (e) {
     if (e.target.value === '') {
       alert('Успех')
       renderAllProducts()
@@ -1021,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     formSearchClear.style.display = 'block'
   })
 
-  searchForm.addEventListener('click', function (e) {
+  formSearchClear.addEventListener('click', (e) => {
     if (!e.target.closest('.form-search__remove')) return
 
     if (searchInput.value) {
@@ -1032,19 +1040,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     formSearchClear.style.display = 'none'
   })
 
-  document.addEventListener('click', function (e) {
+  document.addEventListener('click', (e) => {
     if (e.target.closest('.form-search__input')) return
     if (formSearchClear.style.display === 'block') {
-      searchInput.blur()
       formSearchClear.style.display = 'none'
     }
   })
 
   window.addEventListener('resize', function(event) {
-  searchInput.blur()
   formSearchClear.style.display = 'none'
   });
-
+  
   async function filterNeedProducts(section, inputValue) {
     const products = await getAllProducts()
     const ul = section.querySelector('ul')
@@ -1133,4 +1139,5 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
