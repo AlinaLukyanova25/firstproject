@@ -1009,8 +1009,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   searchInput.addEventListener('input', function (e) {
     if (e.target.value === '') {
       renderAllProducts()
-      searchInput.blur()
-      formSearchClear.style.display = 'none'
     }
   })
 
@@ -1132,4 +1130,5 @@ document.addEventListener('DOMContentLoaded', async function () {
     dateManufactureProduct.value = calcDateStart.value
     dateInput.value = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
   }
+
 })
