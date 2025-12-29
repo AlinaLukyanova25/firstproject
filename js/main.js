@@ -1006,8 +1006,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 });
 
-  searchInput.addEventListener('input', function (e) {
+  searchInput.addEventListener('change', function (e) {
     if (e.target.value === '') {
+      alert('Успех')
       renderAllProducts()
     }
   })
@@ -1020,7 +1021,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     formSearchClear.style.display = 'block'
   })
 
-  searchForm.addEventListener('click', (e) => {
+  searchForm.addEventListener('click', function (e) {
     if (!e.target.closest('.form-search__remove')) return
 
     if (searchInput.value) {
@@ -1031,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     formSearchClear.style.display = 'none'
   })
 
-  document.addEventListener('click', (e) => {
+  document.addEventListener('click', function (e) {
     if (e.target.closest('.form-search__input')) return
     if (formSearchClear.style.display === 'block') {
       searchInput.blur()
@@ -1132,3 +1133,4 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
