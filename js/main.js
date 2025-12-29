@@ -971,7 +971,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     closeModalReturn()
   }
 
- alert('привет')
+ alert('привет хай')
 
   const formSearchBtn = document.querySelector('.form-search__btn')
   elementCheck(formSearchBtn, 'кнопка поиска')
@@ -1006,27 +1006,29 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   searchInput.addEventListener('touchstart', function (e) {
     this.focus()
-  }, {passive: false})
+  }, { passive: false })
 
-  searchInput.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter' || event.keyCode === 13) {
-    formSearchBtn.click()
-  }
-});
-
-   searchInput.addEventListener('input', function (e) {
-    if (e.target.value === '') {
-      alert('Успех')
-      renderAllProducts()
+  searchInput.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      formSearchBtn.click()
     }
+  });
+
+  searchInput.addEventListener('input', function (e) {
+    
+    if (searchInput.value !== '') {
+      formSearchClear.style.display = 'block'
+    } else {
+      formSearchClear.style.display = 'none'
+    }
+    renderAllProducts()
   })
 
   searchInput.addEventListener('focus', function (e) {
     let coords = searchInput.getBoundingClientRect()
     formSearchClear.style.left = coords.x + coords.width - 30 + 'px'
-    let heightInput = coords.height/2
+    let heightInput = coords.height / 2
     formSearchClear.style.top = Math.round(coords.y + Math.round(heightInput)) - 10 + 'px'
-    formSearchClear.style.display = 'block'
   })
 
   formSearchClear.addEventListener('click', (e) => {
@@ -1040,16 +1042,13 @@ document.addEventListener('DOMContentLoaded', async function () {
     formSearchClear.style.display = 'none'
   })
 
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('.form-search__input')) return
-    if (formSearchClear.style.display === 'block') {
+  searchInput.addEventListener('blur', function (e) {
+    if (searchInput.value === '') {
       formSearchClear.style.display = 'none'
+    } else {
+      searchInput.focus()
     }
   })
-
-  window.addEventListener('resize', function(event) {
-  formSearchClear.style.display = 'none'
-  });
   
   async function filterNeedProducts(section, inputValue) {
     const products = await getAllProducts()
@@ -1139,5 +1138,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
