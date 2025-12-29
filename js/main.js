@@ -971,7 +971,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     closeModalReturn()
   }
 
- alert('привет хай')
+ alert('привет хай хихи')
 
   const formSearchBtn = document.querySelector('.form-search__btn')
   elementCheck(formSearchBtn, 'кнопка поиска')
@@ -1018,10 +1018,11 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     if (searchInput.value !== '') {
       formSearchClear.style.display = 'block'
+      renderAllProducts()
     } else {
       formSearchClear.style.display = 'none'
+      renderAllProducts()
     }
-    renderAllProducts()
   })
 
   searchInput.addEventListener('focus', function (e) {
@@ -1138,6 +1139,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
