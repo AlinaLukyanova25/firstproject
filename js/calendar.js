@@ -282,7 +282,7 @@ export class ExpiryCalendar {
 
     createArrow() {
         const arrowBack = document.createElement('button')
-        arrowBack.textContent = '⭠'
+        arrowBack.innerHTML = '<img src="img/arrow-left.svg" alt="Стрелка назад">'
         arrowBack.classList.add('arrow', 'arrow-back')
         return arrowBack
     }
@@ -328,3 +328,4 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
      document.querySelector('.modal-calendar').classList.remove('open-calendar')
 })
  
+
