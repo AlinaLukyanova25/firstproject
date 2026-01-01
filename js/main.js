@@ -323,11 +323,13 @@ document.addEventListener('DOMContentLoaded', async function () {
       const htmlModalRemove = createModalRemove(product, card.dataset.productId)
       modalRemove.innerHTML = htmlModalRemove
       modalRemove.classList.add('open-remove')
+      document.body.classList.add('no-scroll');
       return
     }
 
     if (e.target.closest('.section__archive')) {
       openModalReturn(product, card.dataset.productId, modalReturn)
+      document.body.classList.add('no-scroll');
       return
     }
 
@@ -341,19 +343,24 @@ document.addEventListener('DOMContentLoaded', async function () {
     arrow.addEventListener('click', (e) => {
       e.preventDefault()
       modal.classList.remove('open')
+      document.body.classList.remove('no-scroll');
     })
+    document.body.classList.add('no-scroll');
   }
 
   function closeModal() {
     modal.classList.remove('open')
+    document.body.classList.remove('no-scroll');
   }
 
   function closeModalRemove() {
     modalRemove.classList.remove('open-remove')
+    document.body.classList.remove('no-scroll');
   }
 
   function closeModalReturn() {
     modalReturn.classList.remove('open-return')
+    document.body.classList.remove('no-scroll');
   }
 
   modal.addEventListener('click', downloadImage)
@@ -709,6 +716,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   
       const html = createModalCalculator()
       newFormCalculator.classList.add('open')
+      document.body.classList.add('no-scroll');
       newFormCalculator.innerHTML = html
       const arrowBackToModal = createArrow()
       if (!arrowBackToModal) elementCheck(arrow, 'стрелка')
@@ -777,6 +785,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       if (!arrow) elementCheck(arrow, 'стрелка')
 
       formCalculator.classList.add('open')
+      document.body.classList.add('no-scroll');
       formCalculator.innerHTML = html
 
       formCalculator.append(arrow)
@@ -836,6 +845,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   backdropCheck(backdropCalculator)
   backdropCalculator.addEventListener('click', () => {
     document.querySelector('.modal-form-calculator')?.classList.remove('open')
+    document.body.classList.remove('no-scroll');
   })
 
   modalReturn.addEventListener('submit', returnFromArchive)
@@ -1099,6 +1109,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const html = createModalRemoveAll(element.querySelector('h2').innerHTML)
         modalRemove.innerHTML = html
         modalRemove.classList.add('open-remove')
+        document.body.classList.add('no-scroll');
 
         modalRemove.addEventListener('click', (e) => {
           const cancel = e.target.closest('.cancel')
@@ -1148,6 +1159,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
