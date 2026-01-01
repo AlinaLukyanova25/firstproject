@@ -84,13 +84,6 @@ h1, h2, h3 { color: var(--gray-blue) }
   transition: all .3s ease;
 }
 
-.btn:hover {
-  outline: none;
-  background-color: var(--dark-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3)
-}
-
 .input-field {
    padding: var(--space-12) var(--space-16);
   border: 2px solid var(--dark-white);
@@ -143,17 +136,16 @@ label {
 }
 
 .nav-list__link {
+  display: block;
   color: white;
-  padding: var(--space-8) var(--space-8);
+  padding: 5px;
   border-radius: 6px;
   transition: all 0.3s ease;
 }
 
-.nav-list__link:hover { background-color: rgba(255, 255, 255, 0.1); }
-
 .nav-list__calendar {
   display: block;
-  width: 40px;
+  width: 33px;
   height: 35px;
 }
 
@@ -206,11 +198,6 @@ section {
   border-left: 4px solid var(--blue);
   transition: all 0.3s ease;
   cursor: pointer;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 .card__title {
@@ -317,10 +304,6 @@ section {
   box-shadow: 0 0 8px rgba(255, 0, 0, 0.5)
 }
 
-.shadow:hover {
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-}
-
 /* Модальные окна */
 
 .modalDefault {
@@ -408,11 +391,6 @@ section {
   transition: all .3s ease;
 }
 
-.modal__calculator:hover {
-  cursor: pointer;
-  background-color: var(--light-gray);
-}
-
 .modal__img {
   width: 50px;
   height: 50px;
@@ -430,11 +408,6 @@ section {
 #add-form label { font-size: 14px; }
 
 .modal__push-archive { background-color: var(--light-gray);}
-
-.modal__push-archive:hover {
-  background-color: var(--gray);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1)
-}
 
 /* Hero секция*/
 
@@ -498,12 +471,6 @@ section {
   border-radius: var(--border-radius-md);
 }
 
-.section__btn-remove:hover,
-.form__btn-remove:hover {
-  background-color: var(--light-gray);
-  border-color: var(--light-gray);
-}
-
 .form-search__input {
   position: relative;
 }
@@ -513,11 +480,6 @@ section {
   border: none;
   display: none;
   position: absolute;
-}
-
-.form-search__remove img:hover {
-  fill: var(--dark-blue);
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 /* Календарь */
@@ -552,8 +514,6 @@ section {
 }
 
 .calendar__day.empty { background-color: var(--light-marble); }
-
-.calendar__day:hover { background-color: var(--very-light-grey); }
 
 .calendar__day.today {
   border-color: var(--green);
@@ -629,11 +589,6 @@ section {
   color: var(--gray-blue);
 }
 
-.arrow:hover {
-  cursor: pointer;
-  color: var(--light-gray);
-}
-
 .arrow-back {
   position: absolute;
   left: 24px;
@@ -657,13 +612,6 @@ section {
     cursor: pointer;
 }
 
-.image-preview:hover {
-    transform: translateY(-4px);
-    box-shadow:
-        inset 0 0 0 2px var(--shadow-blue),
-        0 8px 15px rgba(0,0,0,0.1);
-}
-
 .image-preview:has(img) {
     background-color: white;
 }
@@ -673,10 +621,6 @@ section {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-}
-
-.image-preview:hover img {
-    transform: scale(1.05);
 }
 
 .image-preview:not(:has(img))::before {
@@ -710,6 +654,62 @@ section {
   left: 0;
 }
 
+@media (any-hover: hover) {
+  .btn:hover {
+    outline: none;
+    background-color: var(--dark-blue);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3)
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  }
+
+  .shadow:hover {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+  }
+
+  .modal__calculator:hover {
+    cursor: pointer;
+    background-color: var(--light-gray);
+  }
+
+  .modal__push-archive:hover {
+    background-color: var(--gray);
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1)
+  }
+
+  .section__btn-remove:hover,
+  .form__btn-remove:hover {
+    background-color: var(--light-gray);
+    border-color: var(--light-gray);
+  }
+
+  .form-search__remove img:hover {
+    fill: var(--dark-blue);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+
+  .calendar__day:hover { background-color: var(--very-light-grey); }
+
+  .arrow:hover {
+    cursor: pointer;
+  }
+
+  .image-preview:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        inset 0 0 0 2px var(--shadow-blue),
+        0 8px 15px rgba(0,0,0,0.1);
+  }
+
+  .image-preview:hover img {
+    transform: scale(1.05);
+  }
+}
+
 @media (max-width: 1210px) {
   .header {
     padding-right: var(--space-10);
@@ -718,7 +718,7 @@ section {
 
   .nav {
     flex-direction: column;
-    gap: var(--space-12);
+    gap: var(--space-8);
   }
 
   .nav-list, .nav-list--top {
@@ -776,7 +776,6 @@ section {
   
   .nav-list__item {
     flex-shrink: 0;
-    font-size: 14px;
   }
   
   .hero h1 {
@@ -926,6 +925,7 @@ section {
     top: 6px;
   }
 }
+
 
 
 
