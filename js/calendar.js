@@ -180,6 +180,7 @@ export class ExpiryCalendar {
         const modalCalendar = document.querySelector('.modal-calendar')
         
         modalCalendar.classList.add('open-calendar')
+        document.body.classList.add('no-scroll');
         modalCalendar.innerHTML = `
         <div class="modal-calendar__content">
         <h3 class="modal__title">Товары до ${date.toLocaleDateString()}</h3>
@@ -193,6 +194,7 @@ export class ExpiryCalendar {
         
         modalCalendar.querySelector('.modal-calendar__close').addEventListener('click', () => {
             modalCalendar.classList.remove('open-calendar')
+            document.body.classList.remove('no-scroll');
         })
 
         const calendarList = document.getElementById('calendar-list')
@@ -218,6 +220,7 @@ export class ExpiryCalendar {
         const arrow = this.createArrow()
         modal.append(arrow)
         modal.classList.add('open')
+        document.body.classList.add('no-scroll');
         
         document.querySelector('.modal-calendar').classList.remove('open-calendar')
 
@@ -252,7 +255,10 @@ export class ExpiryCalendar {
                     }
                         }
                         
-                        if (modalCalendar) modalCalendar.classList.add('open-calendar')
+                        if (modalCalendar) {
+                            modalCalendar.classList.add('open-calendar')
+                            document.body.classList.add('no-scroll');
+                        }
                     }
                     
                     modal.classList.remove('open')
@@ -275,6 +281,7 @@ export class ExpiryCalendar {
                         
                         document.querySelector('.modal-calendar').classList.add('open-calendar')
                         modal.classList.remove('open')
+                        document.body.classList.remove('no-scroll');
                     }
                 });
             })
@@ -326,6 +333,8 @@ export class ExpiryCalendar {
 
 document.getElementById('backdrop-calendar').addEventListener('click', () => {
      document.querySelector('.modal-calendar').classList.remove('open-calendar')
+    document.body.classList.remove('no-scroll');
 })
  
+
 
