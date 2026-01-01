@@ -216,9 +216,9 @@ document.addEventListener('DOMContentLoaded', async function () {
     let product = {
       id: Date.now(),
       name: nameProduct.value,
-      productionDate: dateManufactureProduct.value || 'Не выбрано',
-      expiryDate: dateInput.value || 'Не выбрано',
-      shelfLife: (new Date(dateInput.value) - new Date(dateManufactureProduct.value)) / 86400000 || 'Не выбрано',
+      productionDate: dateManufactureProduct.value || null,
+      expiryDate: dateInput.value || null,
+      shelfLife: (new Date(dateInput.value) - new Date(dateManufactureProduct.value)) / 86400000 || null,
       category: categoryProduct.value,
       inArchive: false,
       image: imageUrl,
@@ -1162,6 +1162,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
