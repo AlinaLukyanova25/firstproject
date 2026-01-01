@@ -199,7 +199,7 @@ export class ExpiryCalendar {
 
         const calendarList = document.getElementById('calendar-list')
 
-        calendarList.addEventListener('click', async (e) => await this.openModalProduct(e, date))
+        if (calendarList) calendarList.addEventListener('click', async (e) => await this.openModalProduct(e, date))
     }
 
     async openModalProduct(e, date) {
@@ -336,5 +336,6 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
