@@ -71,6 +71,7 @@ export function openModalReturn(product, id, modalReturn) {
     arrow.addEventListener('click', (e) => {
       e.preventDefault()
       modalReturn.classList.remove('open-return')
+        document.body.classList.remove('no-scroll');
     })
 }
 
@@ -105,3 +106,4 @@ function createModalReturn(product, id) {
     `
 
 }
+
