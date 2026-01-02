@@ -616,6 +616,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const id = +ok.dataset.rem
       const product = products.find(prod => prod.id === id)
       console.log(product)
+      alert('huhu')
 
       if (product) {
         removeProduct(product.id)
@@ -1127,6 +1128,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             const id = +prodCard.dataset.productId
             const product = products.find(prod => prod.id === id)
             console.log(product)
+            alert('Другое')
 
             removeProducts(id)
             closeModalRemove()
@@ -1166,6 +1168,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
