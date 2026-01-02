@@ -21,8 +21,8 @@ export const productCategoryTranslation = {
 }
 
 function getDaysText(daysLeft) {
-  if (daysLeft === 0) return 'Истекает сегодня!'
   daysLeft = parseInt(daysLeft)
+  if (daysLeft == 0) return 'Истекает сегодня!'
     if (daysLeft === 1) return 'Остался 1 день'
   if (daysLeft > 0) {
 
@@ -134,5 +134,6 @@ function setWidthProgrssBar(product) {
     return Math.round(subtractionPercent) + '%'
 
 }
+
 
 
