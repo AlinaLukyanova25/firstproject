@@ -108,7 +108,7 @@ export function creaeteArchiveCard(product) {
 
     return `
        <button class="btn-remove section__btn-remove">&#128465;&#65039;</button>
-        <div class="section__item-top">
+        <div class="section__item-top" style="margin: 0;">
         <h3 class="card__title">${product.name}</h3>
           <p>Продукт в архиве</p>
         </div>
@@ -134,4 +134,5 @@ function setWidthProgrssBar(product) {
     return Math.round(subtractionPercent) + '%'
 
 }
+
 
