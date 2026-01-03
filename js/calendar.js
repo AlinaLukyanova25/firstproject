@@ -255,10 +255,12 @@ export class ExpiryCalendar {
                     }
                         }
                         
-                        if (modalCalendar) {
+                        sections.forEach(element => {
+                           if (modalCalendar && element.style.display !== 'none' && element.className === 'calendar') {
                             modalCalendar.classList.add('open-calendar')
                             document.body.classList.add('no-scroll');
-                        }
+                        } 
+                        });
                     }
                     
                     modal.classList.remove('open')
@@ -336,6 +338,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
