@@ -991,9 +991,15 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   formSearchBtn.addEventListener('click', searchProducts)
 
+  let isSearching = false
+
   async function searchProducts(e) {
     e.preventDefault()
-    const needProduct = searchInput.value
+
+    if (isSearching) return
+    isSearching = true
+    try {
+      const needProduct = searchInput.value
     if (searchInput.value === '') return
     if (!needProduct) return
     searchInput.removeEventListener('blur', inputBlur)
@@ -1056,6 +1062,9 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
       }
     });
+    } finally {
+      setTimeout(() => isSearching = false, 300)
+    }
   }
 
   searchInput.addEventListener('touchstart', function (e) {
@@ -1204,6 +1213,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
