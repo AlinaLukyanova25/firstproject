@@ -991,7 +991,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   formSearchBtn.addEventListener('click', searchProducts)
 
-  function searchProducts(e) {
+  async function searchProducts(e) {
     e.preventDefault()
     const needProduct = searchInput.value
     if (searchInput.value === '') return
@@ -1009,15 +1009,50 @@ document.addEventListener('DOMContentLoaded', async function () {
       sectionArchive,
     ]
 
+    const collectionProd = await getAllProducts()
+    let products = []
+    for (let prod of collectionProd) {
+      products.push(prod)
+    }
+
+    let needProducts = []
+
     allSection.forEach(section => {
       if (section.style.display === 'block') {
-        section.querySelectorAll('.card__title')?.forEach(element => {
-          if (element.innerHTML.toLowerCase().includes(needProduct.toLowerCase())) {
-            filterNeedProducts(section, needProduct)
-          } else {
-            section.querySelector('ul').innerHTML = 'Ничего не найдено...'
-          }
-        });
+        // if ()
+        if (section.classList.contains('section__archive')) {
+          needProducts = products.filter(prod => prod.inArchive)
+          needProducts = []
+          return
+        }
+
+        if (section.classList.contains('section__expired')) {
+          needProducts = products.filter(prod => calculateDateDifference(prod.expiryDate) <= 0 && !prod.inArchive)
+          filterNeedProducts(needProducts, section, needProduct)
+          needProducts = []
+          return
+        }
+
+        if (section.classList.contains('section__soon')) {
+          needProducts = products.filter(prod => calculateDateDifference(prod.expiryDate) <= 3 && calculateDateDifference(prod.expiryDate) > 0 && !prod.inArchive)
+          filterNeedProducts(needProducts, section, needProduct)
+          needProducts = []
+          return
+        }
+
+        if (section.classList.contains('section__fresh')) {
+          needProducts = products.filter(prod => calculateDateDifference(prod.expiryDate) > 3 && !prod.inArchive)
+          filterNeedProducts(needProducts, section, needProduct)
+          needProducts = []
+          return
+        }
+
+        if (section.classList.contains('section__all')) {
+          needProducts = products.filter(prod => !prod.inArchive)
+          filterNeedProducts(needProducts, section, needProduct)
+          needProducts = []
+          return
+        }
       }
     });
   }
@@ -1073,17 +1108,17 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
   }
   
-  async function filterNeedProducts(section, inputValue) {
-    const products = await getAllProducts()
+  function filterNeedProducts(arr, section, inputValue) {
+    if (!arr) return
     const ul = section.querySelector('ul')
     ul.innerHTML = ''
 
-    products.forEach(element => {
-      if (element.name.toLowerCase().includes(inputValue.toLowerCase())) {
-        if (element.inArchive) {
-          renderProductsToArchive(section, element)
+    arr.forEach(prod => {
+      if (prod.name.toLowerCase().includes(inputValue.toLowerCase())) {
+        if (prod.inArchive) {
+          renderProductsToArchive(section, prod)
         } else {
-          autoMakeCategory(section, element)
+          autoMakeCategory(section, prod)
         }
       }
     });
@@ -1168,6 +1203,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
