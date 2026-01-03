@@ -1022,6 +1022,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         // if ()
         if (section.classList.contains('section__archive')) {
           needProducts = products.filter(prod => prod.inArchive)
+          filterNeedProducts(needProducts, section, needProduct)
           needProducts = []
           return
         }
@@ -1203,6 +1204,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
