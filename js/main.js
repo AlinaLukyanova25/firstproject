@@ -22,7 +22,9 @@ import {
   calculateExpirationDate,
   dateToAddForm,
   createModalCalculator,
-  createArrow
+  createArrow,
+  showError,
+  clearError,
 } from './calculator.js'
 
 import {
@@ -478,9 +480,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (productToUpdate) {
 
       if (oldDate === newDateProduction) {
-        let haha = new Date(newDateExpiry)
-        haha.setDate(haha.getDate() - productToUpdate.shelfLife)
-        newDateProduction = haha.toISOString().split('T')[0]
+        let date = new Date(newDateExpiry)
+        date.setDate(date.getDate() - productToUpdate.shelfLife)
+        if (date > new Date()) {
+          showError(modal.dateProd, 'Неправильная дата изготовления')
+          return
+        } else {
+          clearError(modal.dateProd)
+        }
+        newDateProduction = date.toISOString().split('T')[0]
       }
       
       productToUpdate.productionDate = newDateProduction
@@ -1214,6 +1222,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
