@@ -777,7 +777,13 @@ section {
     overflow-x: auto;
     overflow-y: hidden;
     width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+
+  .nav-list::-webkit-scrollbar {
+  height: 0;
+}
   
   .nav-list__item {
     flex-shrink: 0;
@@ -945,6 +951,7 @@ section {
     font-size: var(--fs12);
   }
 }
+
 
 
 
