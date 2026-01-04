@@ -6,6 +6,7 @@ export const productCategoryTranslation = {
   'fish': 'Рыба',
   'frozen-food': 'Заморозка',
   'fresh': 'Фреш',
+  'preserves': 'Консервы',
   'eggs': 'Яйца',
   'bread': 'Хлеб',
   'cakes': 'Торты/пирожные',
@@ -134,6 +135,7 @@ function setWidthProgrssBar(product) {
     return Math.round(subtractionPercent) + '%'
 
 }
+
 
 
 
