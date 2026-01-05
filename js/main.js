@@ -506,8 +506,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
       }
       await updateProduct(productToUpdate)
-      closeModal()
       await renderAllProducts()
+      closeModal()
       window.scrollTo(0, window.scrollPosition)
       
     } else {
@@ -1227,6 +1227,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
