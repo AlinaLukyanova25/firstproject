@@ -82,6 +82,7 @@ export class ExpiryCalendar {
 
     createDayElement(date, dayNumber, nextMonth = false) {
         const dayEl = document.createElement('div')
+        dayEl.setAttribute('tabindex', '0')
         dayEl.classList.add('calendar__day')
 
         if (date) {
@@ -300,7 +301,7 @@ export class ExpiryCalendar {
         const categoryDisplay = productCategoryTranslation[product.category] || product.category
 
         return `
-        <li class="card calendar-item" data-id="${product.id}">
+        <li class="card calendar-item" data-id="${product.id}" tabindex="0">
         <div class="image-preview" id="preview-${product.id}">
         ${product.image
                 ? `<img src="${product.image}" alt="${product.name}">`
@@ -338,6 +339,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
