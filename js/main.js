@@ -278,6 +278,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     let li = document.createElement('li')
     li.classList.add('card', 'section__item')
     li.setAttribute('data-product-id', prod.id)
+    li.setAttribute('tabindex', '0')
     li.innerHTML = createProductCard(prod)
     ul.append(li)
 
@@ -345,7 +346,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const html = toModal(product, id)
     modal.innerHTML = html
     modal.classList.add('open')
-    modal.append(arrow)
+    modal.prepend(arrow)
 
     arrow.addEventListener('click', (e) => {
       e.preventDefault()
@@ -592,7 +593,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     const li = document.createElement('li')
     li.classList.add('card', 'section__item')
     li.setAttribute('data-product-id', product.id)
-      li.innerHTML = createProductCard(product)
+    li.setAttribute('tabindex', '0')
+    li.innerHTML = createProductCard(product)
     ul.append(li)
     
     if (section.id === 'all-products' && new Date(product.expiryDate) < new Date) {
@@ -611,6 +613,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const li = document.createElement('li')
     li.classList.add('card', 'section__item')
     li.setAttribute('data-product-id', product.id)
+    li.setAttribute('tabindex', '0')
     li.innerHTML = creaeteArchiveCard(product)
     ul.append(li)
   }
@@ -733,7 +736,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       newFormCalculator.innerHTML = html
       const arrowBackToModal = createArrow()
       if (!arrowBackToModal) elementCheck(arrow, 'стрелка')
-      newFormCalculator.append(arrowBackToModal)
+      newFormCalculator.prepend(arrowBackToModal)
       modal.classList.remove(open)
 
       arrowBackToModal.addEventListener('click', (e) => {
@@ -801,7 +804,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       document.body.classList.add('no-scroll');
       formCalculator.innerHTML = html
 
-      formCalculator.append(arrow)
+      formCalculator.prepend(arrow)
     arrow.addEventListener('click', (e) => {
       e.preventDefault()
       formCalculator.classList.remove('open')
@@ -1227,6 +1230,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
