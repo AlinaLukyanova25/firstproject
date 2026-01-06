@@ -11,7 +11,7 @@ import {
 export function toModal(card, id) {
     return `
     <h2 class="modal__title">${card.name}</h2>
-    <div class="image-preview" id="preview-${card.id}">
+    <div class="image-preview" id="preview-${card.id}" tabindex="0">
         ${card.image
                 ? `<img src="${card.image}" alt="${card.name}">`
                 : ''
@@ -67,19 +67,20 @@ export function openModalReturn(product, id, modalReturn) {
     modalReturn.innerHTML = createModalReturn(product, id)
     modalReturn.classList.add('open-return')
 
-    modalReturn.append(arrow)
+    modalReturn.prepend(arrow)
     arrow.addEventListener('click', (e) => {
     e.preventDefault()
     modalReturn.classList.remove('open-return')
     document.body.classList.remove('no-scroll');
     window.scrollTo(0, window.scrollPosition)
+    document.querySelector(`[data-product-id="${id}"]`).focus()
     })
 }
 
 function createModalReturn(product, id) {
     return `
     <h2 class="modal__title">${product.name}</h2>
-    <div class="image-preview" id="preview-${product.id}">
+    <div class="image-preview" id="preview-${product.id}" tabindex="0">
         ${product.image
                 ? `<img src="${product.image}" alt="${product.name}">`
                 : ''
@@ -107,6 +108,7 @@ function createModalReturn(product, id) {
     `
 
 }
+
 
 
 
