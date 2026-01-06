@@ -1060,8 +1060,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     } catch (error) {
       console.error('Ошибка при загрузке фото:', error)
     }
-      
-    await renderAllProducts()
     return
    }
  }
@@ -1327,6 +1325,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
