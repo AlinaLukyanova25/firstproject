@@ -72,7 +72,7 @@
   </section>
   <section class="form" id="form">
     <form id="add-form" class="form__add">
-      <div class="image-preview">
+      <div class="image-preview" tabindex="0">
         </div>
       <input type="file"
         id="file-${card.id}"
@@ -165,22 +165,22 @@
     </div>
   </section>
 
-  <form class="modalDefault modal" id="modal" data-modal-id="product-card">
+  <form class="modalDefault modal" id="modal" data-modal-id="product-card" tabindex="-1" role="dialog" aria-modal="true">
   </form>
   <div class="modal-backdrop-default modal-backdrop" id="backdrop"></div>
 
-  <div class="modalDefault modal-remove" id="modal-remove">
+  <div class="modalDefault modal-remove" id="modal-remove" tabindex="-1" role="dialog" aria-modal="true">
   </div>
   <div class="modal-backdrop-default modal-remove-backdrop" id="remove-backdrop"></div>
 
-  <form class="modalDefault modal-return" id="modal-return" data-modal-id="archive-card">
+  <form class="modalDefault modal-return" id="modal-return" data-modal-id="archive-card" tabindex="-1" role="dialog" aria-modal="true">
   </form>
   <div class="modal-backdrop-default modal-return-backdrop" id="return-backdrop"></div>
 
-  <div class="modalDefault modal-calendar"></div>
+  <div class="modalDefault modal-calendar" tabindex="-1" role="dialog" aria-modal="true"></div>
   <div class="modal-backdrop-default backdrop-calendar" id="backdrop-calendar"></div>
 
-  <form class="modalDefault modal-form-calculator calculator" id="modal-calculator">
+  <form class="modalDefault modal-form-calculator calculator" id="modal-calculator" tabindex="-1" role="dialog" aria-modal="true">
   </form>
   <div class="modal-backdrop-default backdrop-calculator" id="backdrop-calculator"></div>
 </main>
@@ -188,6 +188,7 @@
 </body>
 
 </html>
+
 
 
 
