@@ -219,7 +219,7 @@ export class ExpiryCalendar {
         modal.firstElementChild.style.marginBottom = 12 + 'px'
         
         const arrow = this.createArrow()
-        modal.append(arrow)
+        modal.prepend(arrow)
         modal.classList.add('open')
         document.body.classList.add('no-scroll');
         
@@ -339,6 +339,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
