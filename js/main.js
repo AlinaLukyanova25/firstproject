@@ -146,8 +146,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     console.error('Дата изготовления не найдена')
     return
   }
-  
-  let products;
 
   if (!addFormProducts) {
     console.error('Форма добавления не найдена')
@@ -1324,6 +1322,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
