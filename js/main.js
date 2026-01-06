@@ -309,7 +309,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   backdrop.addEventListener('click', (e) => closeModal(''))
   backdropRemove.addEventListener('click', closeModalRemove)
   modalRemove.addEventListener('click', removeOrCloseModal)
-  backdropReturn.addEventListener('click', closeModalReturn)
+  backdropReturn.addEventListener('click', (e) => closeModalReturn(''))
   
   async function openModal(e) {
     const card = e.target.closest('.section__item')
@@ -367,10 +367,11 @@ document.addEventListener('DOMContentLoaded', async function () {
       window.scrollTo(0, window.scrollPosition)
   }
 
-  function closeModalReturn() {
+  function closeModalReturn(card) {
     modalReturn.classList.remove('open-return')
     document.body.classList.remove('no-scroll');
-      window.scrollTo(0, window.scrollPosition)
+    window.scrollTo(0, window.scrollPosition)
+    if (card) card.focus()
   }
 
   document.addEventListener('keydown', function (e) {
@@ -592,7 +593,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       console.log('Продукт обновлен:', productToUpdate)
       if (modal.querySelector('.image-preview img')) {
         if (modal.querySelector('.image-preview img').src !== productToUpdate.image) {
-          productToUpdate.image = modal.querySelector('.image-preview img').src
+          productToUpdate.image = modal.querySelector(document.querySelector('.section__item')).src
         }
       }
       await updateProduct(productToUpdate)
@@ -767,7 +768,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       await renderAllProducts()
 
-      closeModal(document.querySelector(`[data-product-id="${id}"]`))
+      closeModal(document.querySelector('.section__item'))
     }
   }
 
@@ -1094,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     await renderAllProducts()
 
-    closeModalReturn()
+    closeModalReturn(document.querySelector('.section__item'))
     sectionArchive.focus()
   }
 
@@ -1326,6 +1327,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
