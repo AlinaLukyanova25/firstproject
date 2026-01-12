@@ -25,9 +25,9 @@ import {
 } from './calculator.js'
 
 import {
-  createProductCard,
+  createProductCardComponent,
   calculateDateDifference,
-  creaeteArchiveCard,
+  creaeteArchiveCardComponent,
 } from './products.js'
 
 import {
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     li.classList.add('card', 'section__item')
     li.setAttribute('data-product-id', prod.id)
     li.setAttribute('tabindex', '0')
-    li.innerHTML = createProductCard(prod)
+    li.innerHTML = createProductCardComponent(prod)
     ul.append(li)
 
     if (section.id === 'all-products' && new Date(prod.expiryDate) < new Date) {
@@ -680,7 +680,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     li.classList.add('card', 'section__item')
     li.setAttribute('data-product-id', product.id)
     li.setAttribute('tabindex', '0')
-    li.innerHTML = createProductCard(product)
+    li.innerHTML = createProductCardComponent(product)
     ul.append(li)
     
     if (section.id === 'all-products' && new Date(product.expiryDate) < new Date) {
@@ -700,7 +700,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     li.classList.add('card', 'section__item')
     li.setAttribute('data-product-id', product.id)
     li.setAttribute('tabindex', '0')
-    li.innerHTML = creaeteArchiveCard(product)
+    li.innerHTML = creaeteArchiveCardComponent(product)
     ul.append(li)
   }
 
@@ -1320,6 +1320,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
