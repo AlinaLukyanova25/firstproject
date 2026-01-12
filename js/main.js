@@ -18,7 +18,7 @@ import {
   validateCalculator,
   calculateExpirationDate,
   dateToAddForm,
-  createModalCalculator,
+  createModalCalculatorComponent,
   createArrow,
   showError,
   clearError,
@@ -818,7 +818,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const newFormCalculator = formCalculator.cloneNode(true)
       formCalculator.parentNode.replaceChild(newFormCalculator, formCalculator)
   
-      const html = createModalCalculator()
+      const html = createModalCalculatorComponent()
       newFormCalculator.classList.add('open')
       document.body.classList.add('no-scroll');
       newFormCalculator.innerHTML = html
@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       e.preventDefault()
       const formCalculator = document.querySelector('.modal-form-calculator')
       modalCheck(formCalculator)
-      const html = createModalCalculator()
+      const html = createModalCalculatorComponent()
       const arrow = createArrow()
       if (!arrow) elementCheck(arrow, 'стрелка')
       formCalculator.innerHTML = html
@@ -1320,6 +1320,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
