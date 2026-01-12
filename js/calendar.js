@@ -1,5 +1,5 @@
 import {
-    getAllProducts
+    productsDB
 } from './storage.js'
 
 import {
@@ -235,7 +235,7 @@ export class ExpiryCalendar {
 
             setTimeout(async () => {
                 try {
-                    const updateProducts = await getAllProducts()
+                    const updateProducts = await productsDB.getAllProducts()
                 this.products = updateProducts
 
                     this.renderCalendar()
@@ -339,6 +339,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
