@@ -53,12 +53,7 @@ export function createProductCard(card) {
     const categoryDisplay = productCategoryTranslation[card.category] || card.category
     const daysLeft = calculateDateDifference(card.expiryDate)
 
-    let daysText
-    if (daysLeft || daysLeft === 0) {
-    daysText = getDaysText(daysLeft)
-    } else {
-    daysText = 'Установите дату'
-    }
+    let daysText = typeof daysLeft === 'number' ? getDaysText(daysLeft) : 'Установите дату'
 
     const percent = setWidthProgrssBar(card)
 
@@ -135,6 +130,7 @@ function setWidthProgrssBar(product) {
     return Math.round(subtractionPercent) + '%'
 
 }
+
 
 
 
