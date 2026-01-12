@@ -107,7 +107,7 @@ export function clearError(input) {
     }
 }
 
-export function createModalCalculator() {
+export function createModalCalculatorComponent() {
   return `
     
     <h2 class="modal__title">Калькулятор</h2>
@@ -131,3 +131,4 @@ export function createArrow() {
     return arrowBack
 
 }
+
