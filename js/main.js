@@ -1,12 +1,7 @@
 window.scrollPosition = 0
 
 import {
-  openDatabase,
-  addProduct,
-  getAllProducts,
-  updateProduct,
-  deleteProduct,
-  getProductById
+  productsDB
 } from './storage.js'
 
 import {
@@ -53,7 +48,7 @@ import {
 } from './utils.js'
 
 document.addEventListener('DOMContentLoaded', async function () {
-  await openDatabase()
+  await productsDB.initialize()
 
   const sectionProductsAll = document.getElementById('all-products')
   elementCheck(sectionProductsAll, 'секция Все')
@@ -227,8 +222,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       addedDate: new Date().toISOString().split('T')[0]
     }
 
-    await addProduct(product)
-    console.log(await getAllProducts())
+    await productsDB.addProduct(product)
+    console.log(await productsDB.getAllProducts())
 
     addFormProducts.querySelector('.image-preview').innerHTML = ''
     renderAllProducts()
@@ -238,7 +233,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   })
  
   async function autoRenderProduct() {
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
     let arr = []
     for (let prod of products) {
       arr.push(prod)
@@ -314,7 +309,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!card) return
     window.scrollPosition = e.pageY - e.clientY
     const id = +card.dataset.productId
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
     const product = products.find(prod => prod.id === id)
 
     if (!product) {
@@ -467,7 +462,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (e.target.closest('.image-preview')) {
       const modalDateInput = document.getElementById('modal-date')
     const id = +modalDateInput.dataset.id
-        const products = await getAllProducts()
+      const products = await productsDB.getAllProducts()
       const product = products.find(p => p.id === id)
       const prodIm = product.image
       if (!product) {
@@ -505,7 +500,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       modal.querySelector('.image-preview img').src = compressedImage
     }
             
-    await updateProduct(product)
+    await productsDB.updateProduct(product)
     } catch (error) {
       console.error('Ошибка при обработке фото:', error)
     }
@@ -567,7 +562,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     
     console.log('Изменяем продукт с id:', id, 'Новая дата:', newDateExpiry)
 
-    const productToUpdate = await getProductById(id)
+    const productToUpdate = await productsDB.getProductById(id)
     const oldDate = productToUpdate.productionDate
 
     if (productToUpdate) {
@@ -594,7 +589,7 @@ document.addEventListener('DOMContentLoaded', async function () {
           productToUpdate.image = modal.querySelector(document.querySelector('.section__item')).src
         }
       }
-      await updateProduct(productToUpdate)
+      await productsDB.updateProduct(productToUpdate)
       await renderAllProducts()
       closeModal(menu)
       window.scrollTo(0, window.scrollPosition)
@@ -611,7 +606,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   })
 
   async function calendarR() {
-    const arr = await getAllProducts()
+    const arr = await productsDB.getAllProducts()
     let products = []
     for (let prod of arr) {
       products.push(prod)
@@ -622,7 +617,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   async function renderAllProducts() {
-    console.log('Привет из рендер', await getAllProducts())
+    console.log('Привет из рендер', await productsDB.getAllProducts())
     const allSection = [
       sectionProductsAll,
       sectionProductsFresh,
@@ -631,7 +626,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       sectionArchive,
     ]
 
-    const arr = await getAllProducts()
+    const arr = await productsDB.getAllProducts()
     let products = []
     for (let a of arr) {
       products.push(a)
@@ -716,7 +711,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     const ok = e.target.closest('#ok-one')
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
 
     if (ok) {
       const id = +ok.dataset.rem
@@ -733,7 +728,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   async function removeProduct(productId) {
-    await deleteProduct(productId)
+    await productsDB.deleteProduct(productId)
 
     closeModalRemove()
 
@@ -753,7 +748,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const modalDateInput = document.getElementById('modal-date')
     const id = +modalDateInput.dataset.id
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
     const product = products.find(prod => prod.id === id)
     console.log(product)
 
@@ -762,7 +757,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
       console.log('Продукт обновлен:', product)
 
-      await updateProduct(product)
+      await productsDB.updateProduct(product)
 
       await renderAllProducts()
 
@@ -777,7 +772,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const modalDateInput = document.getElementById('modal-date')
     const id = +modalDateInput.dataset.id
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
     const product = products.find(prod => prod.id === id)
     const modalSelect = document.querySelector('.modal__select')
 
@@ -971,7 +966,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const modalDateInput = document.getElementById('modal-return-date')
     const id = +modalDateInput.dataset.modal
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
     const product = products.find(prod => prod.id === id)
     if (!product) {
       console.warn('Продукт не найден')
@@ -1003,7 +998,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (e.target.closest('.image-preview')) {
       const modalDateInput = document.getElementById('modal-return-date')
       const id = +modalDateInput.dataset.modal
-      const products = await getAllProducts()
+      const products = await productsDB.getAllProducts()
       const product = products.find(p => p.id === id)
       console.log('archive down', id, product)
       if (!product) return
@@ -1068,7 +1063,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     const modalDateInput = document.getElementById('modal-return-date')
     const dateProdInput = document.getElementById('modal-return-date-prod')
     const id = +modalDateInput.dataset.modal
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
 
     const product = products.find(prod => prod.id === id)
     if (!product) {
@@ -1087,7 +1082,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
     }
 
-    await updateProduct(product)
+    await productsDB.updateProduct(product)
 
     await renderAllProducts()
 
@@ -1123,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       sectionArchive,
     ]
 
-    const collectionProd = await getAllProducts()
+    const collectionProd = await productsDB.getAllProducts()
     let products = []
     for (let prod of collectionProd) {
       products.push(prod)
@@ -1250,7 +1245,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!e.target.closest('.form__btn-remove')) return
     window.scrollPosition = 0
 
-    const products = await getAllProducts()
+    const products = await productsDB.getAllProducts()
 
     const allSection = [
       sectionProductsAll,
@@ -1294,7 +1289,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   async function removeProducts(id) {
-  await deleteProduct(id)
+  await productsDB.deleteProduct(id)
   }
 
   //transfer
@@ -1322,6 +1317,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
