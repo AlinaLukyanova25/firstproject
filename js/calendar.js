@@ -54,13 +54,17 @@ export class ExpiryCalendar {
         for (let i = 0; i < startOffset; i++) {
             const lastMonthFirstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), (0 - (startOffset -1)) + i)
             const day = lastMonthFirstDay.getDate()
+            
             const dayEl = this.createDayElement(lastMonthFirstDay, day, true)
+            
             calendarEl.append(dayEl)
         }
 
         for (let day = 1; day <= dayInMonth; day++) {
             const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day)
+            
             const dayEl = this.createDayElement(date, day)
+            
             calendarEl.append(dayEl)
         }
 
@@ -72,7 +76,9 @@ export class ExpiryCalendar {
             for (let i = 0; i < nextMonthDays; i++) {
                 const nextMonthFirstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, i + 1)
                 const day = nextMonthFirstDay.getDate()
+                
                 const dayEl = this.createDayElement(nextMonthFirstDay, day, true)
+                
                 calendarEl.append(dayEl)
             }
         }
@@ -339,6 +345,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
