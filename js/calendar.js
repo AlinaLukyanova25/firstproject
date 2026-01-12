@@ -67,9 +67,9 @@ export class ExpiryCalendar {
         const endingDay = lastDay.getDay()
         const endOffset = endingDay === 0 ? 6 : endingDay - 1
 
-        const haha = 6 - endOffset
-        if (haha > 0) {
-            for (let i = 0; i < haha; i++) {
+        const nextMonthDays = 6 - endOffset
+        if (nextMonthDays > 0) {
+            for (let i = 0; i < nextMonthDays; i++) {
                 const nextMonthFirstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, i + 1)
                 const day = nextMonthFirstDay.getDate()
                 const dayEl = this.createDayElement(nextMonthFirstDay, day, true)
@@ -339,6 +339,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
