@@ -8,7 +8,7 @@ import {
 } from './calculator.js'
 
 
-export function toModal(card, id) {
+export function toModalComponent(card, id) {
     return `
     <h2 class="modal__title">${card.name}</h2>
     <div class="image-preview" id="preview-${card.id}" tabindex="0">
@@ -40,7 +40,7 @@ export function toModal(card, id) {
     `
 }
 
-export function createModalRemove(card, id) {
+export function createModalRemoveComponent(card, id) {
     return `
     <h2 class="modal-remove__title">${card.name}</h2>
     <p class="modal-remove__descr">Вы действительно хотите удалить продукт?</p>
@@ -51,7 +51,7 @@ export function createModalRemove(card, id) {
     `
 }
 
-export function createModalRemoveAll(section) {
+export function createModalRemoveAllComponent(section) {
     return `
     <p class="modal-remove__descr">Вы действительно хотите удалить все продукты в секции "${section}"?</p>
     <div class="modal-remove__buttons">
@@ -64,7 +64,7 @@ export function createModalRemoveAll(section) {
 export function openModalReturn(product, id, modalReturn) {
     const arrow = createArrow()
 
-    modalReturn.innerHTML = createModalReturn(product, id)
+    modalReturn.innerHTML = createModalReturnComponent(product, id)
     modalReturn.classList.add('open-return')
 
     modalReturn.prepend(arrow)
@@ -77,7 +77,7 @@ export function openModalReturn(product, id, modalReturn) {
     })
 }
 
-function createModalReturn(product, id) {
+function createModalReturnComponent(product, id) {
     return `
     <h2 class="modal__title">${product.name}</h2>
     <div class="image-preview" id="preview-${product.id}" tabindex="0">
@@ -108,6 +108,7 @@ function createModalReturn(product, id) {
     `
 
 }
+
 
 
 
