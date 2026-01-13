@@ -55,17 +55,17 @@ export class ExpiryCalendar {
             const lastMonthFirstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), (0 - (startOffset -1)) + i)
             const day = lastMonthFirstDay.getDate()
             
-            const dayEl = this.createDayElement(lastMonthFirstDay, day, true)
+            const dayEl = this.createDayComponent(lastMonthFirstDay, day, true)
             
-            calendarEl.append(dayEl)
+            calendarEl.insertAdjacentHTML('beforeend', dayEl)
         }
 
         for (let day = 1; day <= dayInMonth; day++) {
             const date = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), day)
             
-            const dayEl = this.createDayElement(date, day)
+            const dayEl = this.createDayComponent(date, day)
             
-            calendarEl.append(dayEl)
+            calendarEl.insertAdjacentHTML('beforeend', dayEl)
         }
 
         const endingDay = lastDay.getDay()
@@ -77,54 +77,67 @@ export class ExpiryCalendar {
                 const nextMonthFirstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, i + 1)
                 const day = nextMonthFirstDay.getDate()
                 
-                const dayEl = this.createDayElement(nextMonthFirstDay, day, true)
+                const dayEl = this.createDayComponent(nextMonthFirstDay, day, true)
                 
-                calendarEl.append(dayEl)
+                calendarEl.insertAdjacentHTML('beforeend', dayEl))
             }
         }
 
         this.updateMonthHeader()
+        this.attachEventListeners()
     }
 
-    createDayElement(date, dayNumber, nextMonth = false) {
-        const dayEl = document.createElement('div')
-        dayEl.setAttribute('tabindex', '0')
-        dayEl.classList.add('calendar__day')
+    createDayComponent(date, dayNumber, nextMonth = false) {
+        if (!date) {
+            return `
+            <div tabindex="0" class="calendar__day empty" style="color: gray;">
+            ${dayNumber}
+            </div>
+            `
+        }
 
-        if (date) {
-            dayEl.textContent = dayNumber
+        const today = new Date()
 
-            dayEl.dataset.date = date.toISOString().split('T')[0]
+        const expiryCount = this.countProductsBeforeDate(date)
 
-            const today = new Date()
-            if (date.getDate() === today.getDate()
+        const dateString = this.formatDateToString(date)
+        
+        return `
+        <div tabindex="0"
+        ${nextMonth
+            ? 'class="calendar__day empty" style="color: gray;"'
+            : (date.getDate() === today.getDate()
                 && date.getMonth() === today.getMonth()
                 && date.getFullYear() === today.getFullYear()
-            ) {
-                dayEl.classList.add('today')
-            }
+            ) ? 'class="calendar__day today"'
+            : 'class="calendar__day"'
+        }
+        data-date="${dateString}"
+        >
+        ${dayNumber}
+        ${expiryCount > 0
+            ? `<span class="expiry-badge" ${this.definesColorsComponent(date)}>${expiryCount}</span>`
+            : ''
+        }
+        </div>
+        `
+    }
 
-            const expiryCount = this.countProductsBeforeDate(date)
+    formatDateToString(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`
+    }
 
-            if (expiryCount > 0) {
-                const badge = document.createElement('span')
-                badge.classList.add('expiry-badge')
-                badge.textContent = expiryCount
-                this.definesColors(date, badge)
-                dayEl.append(badge)
-            }
-
-            dayEl.addEventListener('click', () => {
+    attachEventListeners() {
+        document.addEventListener('click', (e) => {
+            const dayEl = e.target.closest('.calendar__day')
+            if (dayEl) {
+                const date = new Date(dayEl.dataset.date)
                 this.handleDayClick(date)
-            })
-        }
-
-        if (nextMonth) {
-            dayEl.classList.add('empty')
-            dayEl.style.color = 'gray'
-        }
-
-        return dayEl
+            }
+        })
     }
 
     countProductsBeforeDate(date) {
@@ -145,16 +158,16 @@ export class ExpiryCalendar {
         }).length
     }
 
-    definesColors(date, elem) {
+     definesColorsComponent(date) {
         const today = new Date()
         if (date < today || date.getDate() === today.getDate()
             && date.getMonth() === today.getMonth()
             && date.getFullYear() === today.getFullYear()) {
-                elem.style.backgroundColor = '#ff4757'
+            return 'style="background-color: #ff4757;"'
         } else if (Math.ceil((date - today) / 86400000) <= 3) {
-            elem.style.backgroundColor = '#f39c12'
+            return 'style="background-color: #f39c12;"'
         } else {
-            elem.style.backgroundColor = '#27ae60'
+            return 'style="background-color: #27ae60;"'
         }
     }
 
@@ -167,11 +180,10 @@ export class ExpiryCalendar {
         return this.products.filter(product => {
             if (!product.expiryDate) return false
             const expiryDate = new Date(product.expiryDate)
-
             if (isNaN(expiryDate.getTime())) return
-            if (expiryDate.getFullYear() === date.getFullYear()
-                && expiryDate.getMonth() === date.getMonth()
-                && expiryDate.getDate() === date.getDate()
+            if (expiryDate.getFullYear() === new Date(date).getFullYear()
+                && expiryDate.getMonth() === new Date(date).getMonth()
+                && expiryDate.getDate() === new Date(date).getDate()
                 && !product.inArchive
             ) {
                 return true
@@ -190,7 +202,7 @@ export class ExpiryCalendar {
         document.body.classList.add('no-scroll');
         modalCalendar.innerHTML = `
         <div class="modal-calendar__content">
-        <h3 class="modal__title">Товары до ${date.toLocaleDateString()}</h3>
+        <h3 class="modal__title">Товары до ${new Date(date).toLocaleDateString()}</h3>
         ${products.length > 0
                 ? `<ul id="calendar-list">${products.map(p => `${this.createProductCardComponent(p, date)}`).join('')}</ul>`
                 : '<p>Нет товаров с истекающим сроком</p>'
@@ -345,6 +357,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
