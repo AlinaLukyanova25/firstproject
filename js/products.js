@@ -23,29 +23,13 @@ export const productCategoryTranslation = {
 
 function getDaysText(daysLeft) {
   daysLeft = parseInt(daysLeft)
-  if (daysLeft == 0) return 'Истекает сегодня!'
-    if (daysLeft === 1) return 'Остался 1 день'
-  if (daysLeft > 0) {
 
-    const lastTwoDigits = Math.abs(daysLeft) % 100
-    const lastDigit = Math.abs(daysLeft) % 10
+  if (daysLeft < 0) return 'Просрочено'
+  if (daysLeft === 0) return 'Истекает сегодня!'
 
-    if (lastTwoDigits >= 11 && lastTwoDigits <= 14) {
-      return `Осталось ${daysLeft} дней`
-    }
-
-    if (lastDigit === 1) {
-      return `Остался ${daysLeft} день`
-    }
-
-    if (lastDigit >= 2 && lastDigit <= 4) {
-      return `Осталось ${daysLeft} дня`
-    }
-
-      return `Осталось ${daysLeft} дней`
-    }
-    return 'Просрочено'
-}  
+    const word = numeralize.pluralize(daysLeft,  'день', 'дня', 'дней')
+    return `До конца: ${daysLeft} ${word}`
+}
 
 
   
@@ -130,6 +114,7 @@ function setWidthProgrssBar(product) {
     return Math.round(subtractionPercent) + '%'
 
 }
+
 
 
 
