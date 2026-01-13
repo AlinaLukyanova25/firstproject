@@ -15,6 +15,10 @@ import {
     elementCheck
 } from './utils.js'
 
+import {
+    createArrow
+} from './calculator.js'
+
 export class ExpiryCalendar {
     constructor(products) {
         this.currentDate = new Date()
@@ -242,7 +246,7 @@ export class ExpiryCalendar {
         modal.firstElementChild.style.paddingLeft = 28 + 'px'
         modal.firstElementChild.style.marginBottom = 12 + 'px'
         
-        const arrow = this.createArrow()
+        const arrow = createArrow()
         modal.prepend(arrow)
         modal.classList.add('open')
         document.body.classList.add('no-scroll');
@@ -363,6 +367,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
