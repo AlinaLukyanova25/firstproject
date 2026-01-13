@@ -79,7 +79,7 @@ export class ExpiryCalendar {
                 
                 const dayEl = this.createDayComponent(nextMonthFirstDay, day, true)
                 
-                calendarEl.insertAdjacentHTML('beforeend', dayEl))
+                calendarEl.insertAdjacentHTML('beforeend', dayEl)
             }
         }
 
@@ -357,6 +357,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
