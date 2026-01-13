@@ -22,6 +22,16 @@ export class ExpiryCalendar {
         this.currentSelectedDate = null
         this.currentModalProducts = null
         this.init()
+
+        this.modalContainer = document.querySelector('.modal-calendar')
+        this.modalContainer.addEventListener('click', async (e) => {
+            if (e.target.closest('.modal-calendar__close')) {
+                this.closeModal()
+            }
+            if (e.target.closest('.calendar-item')) {
+                await this.openModalProduct(e)
+            }
+        })
     }
 
     init() {
@@ -191,6 +201,11 @@ export class ExpiryCalendar {
             return false
         })
     }
+    
+    closeModal() {
+        this.modalContainer.classList.remove('open-calendar')
+        document.body.classList.remove('no-scroll');
+    }
 
     showProductsModal(products, date) {
         this.currentSelectedDate = date
@@ -210,18 +225,9 @@ export class ExpiryCalendar {
         <button class="btn modal-calendar__close" style="width: 100%;">Закрыть</button>
         </div>
         `;
-        
-        modalCalendar.querySelector('.modal-calendar__close').addEventListener('click', () => {
-            modalCalendar.classList.remove('open-calendar')
-            document.body.classList.remove('no-scroll');
-        })
-
-        const calendarList = document.getElementById('calendar-list')
-
-        if (calendarList) calendarList.addEventListener('click', async (e) => await this.openModalProduct(e, date))
     }
 
-    async openModalProduct(e, date) {
+    async openModalProduct(e) {
         const modal = document.getElementById('modal')
         const sections = document.querySelectorAll('section')
         const target = e.target.closest('li')
@@ -357,6 +363,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
