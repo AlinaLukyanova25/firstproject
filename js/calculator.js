@@ -2,14 +2,14 @@ import {
   elementCheck
 } from './utils.js'
 
-const today = new Date();
+import {
+  DateUtils
+} from './state.js'
 
 export const calcDateStart = document.getElementById('date-start')
 elementCheck(calcDateStart, 'поле ввода')
-const dayStart = String(today.getDate()).padStart(2, '0');
-export const dateStartString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${dayStart}`
 
-calcDateStart.setAttribute('max', dateStartString)
+DateUtils.setMaxDate(calcDateStart)
 
 export const sectionHero = document.getElementById('hero')
 elementCheck(sectionHero, 'секция hero')
@@ -131,4 +131,5 @@ export function createArrow() {
     return arrowBack
 
 }
+
 
