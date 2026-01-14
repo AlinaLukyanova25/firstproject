@@ -269,6 +269,16 @@
     max-height: 320px;
   }
 
+  .modal-remove {
+    &__title {
+      font-size: $fs20;;
+    }
+
+    &__descr {
+      font-size: $fs16;
+    }
+  }
+
   .date-end {
     min-height: 36px;
   }
@@ -295,4 +305,5 @@
   }
 
 }
+
 
