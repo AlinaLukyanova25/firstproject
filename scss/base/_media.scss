@@ -137,11 +137,11 @@
 
   .hero {
     h1 {
-    font-size: fs32;
+    font-size: $fs32;
     }
 
     p {
-    font-size: fs16;
+    font-size: $fs16;
     }
 
     &__form.calculator {
@@ -293,4 +293,5 @@
   .calendar-item__footer {
     font-size: $fs12;
   }
+
 }
