@@ -312,8 +312,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (!card) return
     window.scrollPosition = e.pageY - e.clientY
     const id = +card.dataset.productId
-    const products = await productsDB.getAllProducts()
-    const product = products.find(prod => prod.id === id)
+    const product = await productsDB.getProductById(id)
 
     if (!product) {
       console.error('Product не найден')
@@ -465,8 +464,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (e.target.closest('.image-preview')) {
       const modalDateInput = document.getElementById('modal-date')
     const id = +modalDateInput.dataset.id
-      const products = await productsDB.getAllProducts()
-      const product = products.find(p => p.id === id)
+      const product = await productsDB.getProductById(id)
       const prodIm = product.image
       if (!product) {
         console.warn('Продукт не найден')
@@ -751,8 +749,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const modalDateInput = document.getElementById('modal-date')
     const id = +modalDateInput.dataset.id
-    const products = await productsDB.getAllProducts()
-    const product = products.find(prod => prod.id === id)
+    const product = await productsDB.getProductById(id)
     console.log(product)
 
     if (product) {
@@ -775,8 +772,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const modalDateInput = document.getElementById('modal-date')
     const id = +modalDateInput.dataset.id
-    const products = await productsDB.getAllProducts()
-    const product = products.find(prod => prod.id === id)
+    const product = await productsDB.getProductById(id)
     const modalSelect = document.querySelector('.modal__select')
 
       if (modalSelect.value === 'day') {
@@ -969,8 +965,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const modalDateInput = document.getElementById('modal-return-date')
     const id = +modalDateInput.dataset.modal
-    const products = await productsDB.getAllProducts()
-    const product = products.find(prod => prod.id === id)
+    const product = await productsDB.getProductById(id)
     if (!product) {
       console.warn('Продукт не найден')
       return
@@ -1001,8 +996,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     if (e.target.closest('.image-preview')) {
       const modalDateInput = document.getElementById('modal-return-date')
       const id = +modalDateInput.dataset.modal
-      const products = await productsDB.getAllProducts()
-      const product = products.find(p => p.id === id)
+      const product = await productsDB.getProductById(id)
       console.log('archive down', id, product)
       if (!product) return
       try {
@@ -1066,9 +1060,8 @@ document.addEventListener('DOMContentLoaded', async function () {
     const modalDateInput = document.getElementById('modal-return-date')
     const dateProdInput = document.getElementById('modal-return-date-prod')
     const id = +modalDateInput.dataset.modal
-    const products = await productsDB.getAllProducts()
-
-    const product = products.find(prod => prod.id === id)
+    const product = await productsDB.getProductById(id)
+    
     if (!product) {
       console.warn('Продукт не найден')
       return
@@ -1320,6 +1313,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
