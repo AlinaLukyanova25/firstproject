@@ -78,5 +78,8 @@
   &__btn-remove {
     @include btn-remove;
   }
+}
 
+.shadow {
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5)
 }
