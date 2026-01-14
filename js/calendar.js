@@ -338,10 +338,10 @@ export class ExpiryCalendar {
         </div>
         <div class="modal-calendar__list-content">
 
-        <div class="calendar-item__top">
+        <div class="calendar-item__header">
         <h3 class="card__title">${product.name}</h3>
         </div>
-        <div class="calendar-item__bottom">
+        <div class="calendar-item__footer">
         <div>До ${formatDateCard(date)}</div>
         <div>${categoryDisplay}</div>
         </div>
@@ -367,6 +367,7 @@ document.getElementById('backdrop-calendar').addEventListener('click', () => {
     document.body.classList.remove('no-scroll');
 })
  
+
 
 
 
