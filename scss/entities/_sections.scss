@@ -57,10 +57,6 @@
   }
 }
 
-.shadow {
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5)
-}
-
 .form-search {
   display: none;
   margin: $space-24 auto;
@@ -84,4 +80,5 @@
   padding: $space-12 $space-16;
   border: $border-solid-2 $dark-white;
   border-radius: $border-radius-md;
+
 }
