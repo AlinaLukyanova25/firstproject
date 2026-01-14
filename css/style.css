@@ -871,6 +871,12 @@ label {
     max-width: 320px;
     max-height: 320px;
   }
+  .modal-remove__title {
+    font-size: 20px;
+  }
+  .modal-remove__descr {
+    font-size: 16px;
+  }
   .date-end {
     min-height: 36px;
   }
