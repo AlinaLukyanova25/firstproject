@@ -356,7 +356,7 @@ label {
 }
 
 .shadow {
-  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5)
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
 }
 
 .modalDefault {
@@ -761,10 +761,10 @@ label {
     flex-shrink: 0;
   }
   .hero h1 {
-    font-size: fs32;
+    font-size: 32px;
   }
   .hero p {
-    font-size: fs16;
+    font-size: 16px;
   }
   .hero__form.calculator {
     padding: 20px;
@@ -896,4 +896,3 @@ label {
 }
 
 /*# sourceMappingURL=style.css.map */
-
