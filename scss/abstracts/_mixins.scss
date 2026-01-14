@@ -1,0 +1,82 @@
+@import 'variables';
+
+//style
+
+@mixin section-style {
+  display: none;
+  padding: $space-32;
+  margin: $space-24 auto;
+  max-width: $width-1200;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow-008;
+  background-color: $white;
+}
+
+@mixin media-section-style {
+  padding: 0;
+  border-left: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+@mixin btn-remove {
+  position: absolute;
+  border: none;
+  background: none;
+  top: $space-5;
+  right: $space-5;
+  font-size: $fs20;
+  color: transparent;
+  text-shadow: 0 0 0 $gray-blue;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: $space-2;
+  transition: $transition-all;
+}
+
+@mixin auto-calc {
+  display: flex;
+  gap: $space-10;
+  align-items: center;
+  padding: $space-10 0;
+}
+
+@mixin modal-title {
+  text-align: center;
+  font-size: $fs24;
+  padding-left: 28px;
+}
+
+@mixin nav-list {
+ display: flex;
+ gap: $space-32;
+ justify-content: center;
+ max-width: $width-1200;
+ margin: 0 auto;
+ padding: 0 $space-16;
+ align-items: center;
+}
+
+//flex
+
+@mixin flex--space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin flex--column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex--column-and-sb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@mixin flex--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

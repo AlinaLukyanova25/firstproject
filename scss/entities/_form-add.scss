@@ -1,0 +1,19 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.form {
+    @include section-style;
+    max-width: $width-600;
+
+    label { font-size: $fs14; }
+
+    &__add {
+        @include flex--column;
+        gap: $space-16;
+    }
+
+    &__content {
+        display: flex;
+        gap: $space-5;
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "product-expiry-tracker",
+  "version": "1.0.0",
+  "description": "Веб-приложение для контроля сроков годности продуктов",
+  "license": "ISC",
+  "author": "Алина",
+  "scripts": {
+    "sass": "sass --watch scss:css",
+    "build": "sass scss:css --style compressed",
+    "dev": "sass --watch scss:css"
+  },
+  "devDependencies": {
+    "sass": "^1.97.2"
+  }
+}

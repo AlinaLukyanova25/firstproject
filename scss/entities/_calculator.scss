@@ -1,0 +1,18 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.date-end {
+  font-weight: $medium;
+  color: $gray-blue;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.calculator {
+    &__title {
+        @include modal-title;
+    }
+
+    label { font-size: $fs14; }
+}

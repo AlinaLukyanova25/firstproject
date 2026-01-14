@@ -1,0 +1,154 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.modalDefault {
+  display: none;
+
+  .modal {
+    &__auto-calc {
+      @include auto-calc;
+    }
+
+    &__title {
+    @include modal-title;
+    }
+
+    &__push-archive { background-color: $light-gray;}
+  }
+
+  .modal-return__auto-calc {
+    @include auto-calc;
+  }
+
+  .modal-calendar {
+    &__content {
+    height: 100%;
+    @include flex--column;
+    gap: $space-8;
+
+     ul {
+    @include flex--column;
+    gap: $space-10;
+    max-height: 566px;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    } 
+    }
+
+    &__list-content {
+    width: 100%;
+    @include flex--column;
+    justify-content: space-around;
+    }
+  } 
+}
+
+.modal.open,
+.modal-return.open-return,
+.modal-calendar.open-calendar,
+.modal-form-calculator.open,
+.modal-remove.open-remove {
+  max-width: $width-500;
+  @include flex--column;
+  gap: $space-8;
+  position: fixed;
+  top: 50px;
+  transform: translate(-50%);
+  left: 50%;
+  width: $width-500;
+  background-color: $white;
+  z-index: 999999;
+  padding: $space-24;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.modal.open + .modal-backdrop,
+.modal-remove.open-remove + .modal-remove-backdrop,
+.modal-return.open-return + .modal-return-backdrop,
+.modal-form-calculator.open + .backdrop-calculator,
+.modal-calendar.open-calendar + .backdrop-calendar { display: block; }
+
+.modal-backdrop-default {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .6);
+  overflow: hidden;
+}
+
+.modal-remove {
+  text-align: center;
+  color: $gray-blue;
+  font-size: $fs24;
+  padding-bottom: $space-8;
+
+  &__buttons {
+  display: flex;
+  justify-content: center;
+  gap: $space-20;
+  }
+}
+
+.arrow {
+  font-size: 2.5em;
+  border: none;
+  background: none;
+  color: $gray-blue;
+}
+
+.arrow-back {
+  position: absolute;
+  left: $space-24;
+  top: $space-15;
+}
+
+.modal__calculator {
+  background: none;
+  border: none;
+  border-radius: 5px;
+  transition: $transition-all;
+}
+
+.modal__img {
+  width: $size-50;
+  height: $size-50;
+}
+
+.calendar-item {
+  flex-direction: row;
+  gap: $space-10;
+
+    .image-preview {
+    width: $size-100;
+    height: $size-100;
+    min-width: $size-100;
+    min-height: 100%;
+    margin: 0;
+    flex-shrink: 0;
+    }
+
+    &__footer {
+    @include flex--space-between;
+    align-items: center;
+
+      div:first-child {
+      color: $gray-blue;
+      font-weight: $medium;
+      margin-right: $space-15;
+      }
+
+      div:last-child {
+      background-color: $blue;
+      color: $white;
+      padding: $space-4 $space-12;
+      border-radius: $border-radius-xl;
+      font-size: $fs12;
+    }
+  }
+}
+
