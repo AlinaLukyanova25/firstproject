@@ -9,7 +9,6 @@ import {
 } from './state.js'
 
 import {
-  dateStartString,
   sectionHero,
   calcDateStart,
   calcDays,
@@ -136,14 +135,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   const dateManufactureProduct = document.getElementById('date-manufacture')
   const dateInput = document.getElementById('end-date');
 
-  DateUtils.initDateInputMin(dateInput)
-
-  if (dateManufactureProduct) {
-    dateManufactureProduct.setAttribute('max', dateStartString)
-  } else {
-    console.error('Дата изготовления не найдена')
-    return
-  }
+  DateUtils.setMinDate(dateInput)
+  DateUtils.setMaxDate(dateManufactureProduct)
 
   if (!addFormProducts) {
     console.error('Форма добавления не найдена')
@@ -1313,6 +1306,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
 })
+
 
 
 
