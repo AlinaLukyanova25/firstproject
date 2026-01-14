@@ -51,7 +51,7 @@ export function createProductCardComponent(card) {
                 : ''
             }
         </div>
-        <div class="setcion__item-content" style="width: 100%;">
+        <div class="section__item-content" style="width: 100%;">
         
         <div class="section__item-header">
         <h3 class="card__title">${card.name}</h3>
@@ -114,6 +114,7 @@ function setWidthProgrssBar(product) {
     return Math.round(subtractionPercent) + '%'
 
 }
+
 
 
 
